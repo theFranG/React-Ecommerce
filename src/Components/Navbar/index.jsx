@@ -321,7 +321,7 @@ const Navbar = () => {
     };
 
     return (
-      <div className="md:hidden">
+      <div className="h-[45px] w-full md:hidden bg-white ">
         <div>
           <img
             src="/navbarMB.svg"
