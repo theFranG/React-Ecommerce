@@ -8,10 +8,9 @@ function SignIn() {
   const [view, setView] = useState('user-info')
   const form = useRef(null)
 
-  // Account
   const account = localStorage.getItem('account')
   const parsedAccount = JSON.parse(account)
-  // Has an account
+
   const noAccountInLocalStorage = parsedAccount ? Object.keys(parsedAccount).length === 0 : true
   const noAccountInLocalState = context.account ? Object.keys(context.account).length === 0 : true
   const hasUserAnAccount = !noAccountInLocalStorage || !noAccountInLocalState
@@ -20,7 +19,7 @@ function SignIn() {
     const stringifiedSignOut = JSON.stringify(false)
     localStorage.setItem('sign-out', stringifiedSignOut)
     context.setSignOut(false)
-    // Redirect
+
     return <Navigate replace to={'/'} />
   }
 
@@ -31,11 +30,11 @@ function SignIn() {
 			email: formData.get('email'),
 			password: formData.get('password')
 		}
-    // Create account
+
     const stringifiedAccount = JSON.stringify(data)
     localStorage.setItem('account', stringifiedAccount)
     context.setAccount(data)
-    // Sign In
+
     handleSignIn()
 	}
 
@@ -53,19 +52,18 @@ function SignIn() {
         <Link
           to="/">
           <button
-            className='bg-black disabled:bg-black/40 text-white  w-full rounded-lg py-3 mt-4 mb-2'
+            className='bg-black disabled:bg-black/40 py-3
+                        text-white  w-full rounded-lg mt-4 '
             onClick={() => handleSignIn()}
             disabled={!hasUserAnAccount}>
             Log in
           </button>
         </Link>
-        <div className='text-center'>
-          <a className='font-light text-xs underline underline-offset-4' href='/'>Forgot my password</a>
-        </div>
         <button
-          className='border border-black disabled:text-black/40 disabled:border-black/40 rounded-lg mt-6 py-3'
+          className='border border-black disabled:text-black/40 
+                    disabled:border-black/40 rounded-lg mt-6 py-3'
           onClick={() => setView('create-user-info')}
-          disabled={hasUserAnAccount}>
+          >
           Sign up
         </button>
       </div>
@@ -126,7 +124,7 @@ function SignIn() {
 
   return (
     <Layout>
-      <h1 className="font-medium text-xl text-center mb-6 w-80">Welcome</h1>
+      <h1 className="font-medium text-xl text-center mb-6 w-80 mt-20">Welcome</h1>
       {renderView()}
     </Layout>
   )
